@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/tiles/category_tile.dart';
 
 class CategoryTab extends StatelessWidget {
   const CategoryTab({Key? key}) : super(key: key);
@@ -12,12 +13,20 @@ class CategoryTab extends StatelessWidget {
           .get(),
       builder: (context, snapshot) {
         if(!snapshot.hasData) return Center(child: CircularProgressIndicator(),);
-        else
-          return ListView(
-            children: <Widget>[
+        else {
+          var dividedTiles = ListTile.divideTiles(
+              tiles: snapshot.data!.docs.map(
+                      (doc) {
+                    return CategoryTile(doc);
+                  }
+              ).toList(),
+              color: Colors.grey[500])
+              .toList();
 
-            ],
+          return ListView(
+              children: dividedTiles
           );
+        }
       }
     );
   }

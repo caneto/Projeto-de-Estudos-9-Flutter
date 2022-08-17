@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/ui/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -13,7 +14,11 @@ class LoginScreen extends StatelessWidget {
         centerTitle: true,
         actions: <Widget>[
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context)=>SignupScreen())
+              );
+            },
             child: Text("Criar Conta",
             style: TextStyle(fontSize: 16.0),),
             textColor: Colors.white,
@@ -65,7 +70,11 @@ class LoginScreen extends StatelessWidget {
                 ),
                 textColor: Colors.white,
                 color: Theme.of(context).primaryColor,
-                onPressed: () {}
+                onPressed: () {
+                  if(_formKey.currentState!.validate()) {
+
+                  }
+                }
               ),
             )
           ],

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/ui/home_screen.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
+import 'package:lojavirtual/ui/signup_screen.dart';
 
 void main() async {
 
@@ -23,8 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 4, 125, 141)
       ),
       debugShowCheckedModeBanner: false,
-      //home: HomeScreen(),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

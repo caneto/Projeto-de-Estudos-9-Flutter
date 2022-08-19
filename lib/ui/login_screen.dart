@@ -12,14 +12,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
-
   final _passController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Entrar"),
         centerTitle: true,
@@ -71,7 +72,22 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if(_emailController.text.isEmpty)
+                      SnackBar(content: Text("Insira seu email para recuperação!"),
+                        backgroundColor: Colors.redAccent,
+                        duration: Duration(seconds: 2),
+                      );
+                    else {
+                      model.recoverPass(_emailController.text);
+                      SnackBar(content: Text("Confire seu email!"),
+                        backgroundColor: Theme
+                            .of(context)
+                            .primaryColor,
+                        duration: Duration(seconds: 2),
+                      );
+                    }
+                  },
                   child: Text(
                     "Esqueci minha senha",
                     textAlign: TextAlign.right,
@@ -112,10 +128,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _onSuccess() {
-
+    Navigator.of(context).pop();
   }
 
   _onFail() {
-
+    _scaffoldKey.currentState!.showSnackBar(
+        SnackBar(content: Text("Falha ao criar entrar!"),
+          backgroundColor: Colors.redAccent,
+          duration: Duration(seconds: 2),
+        )
+    );
   }
 }

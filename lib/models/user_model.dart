@@ -8,7 +8,7 @@ class UserModel extends Model {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  User? _user;
+  User? firebaseUser;
   Map<String,dynamic> userData = Map();
 
   bool isLoading = false;
@@ -22,7 +22,7 @@ class UserModel extends Model {
         email: userData['email'],
         password: pass
     ).then((user) async {
-      _user = user.user;
+      firebaseUser = user.user;
 
       await _saveUserData(userData);
 
@@ -34,7 +34,6 @@ class UserModel extends Model {
       isLoading = false;
       notifyListeners();
     });
-
   }
 
   Future<void> signIn() async {
@@ -47,21 +46,29 @@ class UserModel extends Model {
     notifyListeners();
   }
 
-  void recoverPass() {
+  Future<void> recoverPass() async {
+    await _auth.signOut();
 
+    userData = Map();
+    firebaseUser = null;
+    notifyListeners();
   }
 
-  //bool isLoggedIn() {
-//
- // }
+  bool isLoggedIn() {
+    return firebaseUser != null;
+  }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
 
     await FirebaseFirestore.instance
         .collection("users")
-        .doc(_user?.uid)
+        .doc(firebaseUser?.uid)
         .set(userData);
+
+  }
+
+  void siginOut() {
 
   }
 

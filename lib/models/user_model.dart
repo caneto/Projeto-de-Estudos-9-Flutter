@@ -57,7 +57,7 @@ class UserModel extends Model {
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
-    .instance.collection("message").orderBy("time").snapshots(),
+
     await FirebaseFirestore.instance
         .collection("users")
         .doc(_user?.uid)

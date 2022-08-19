@@ -4,12 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   SignupScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   final _nameController = TextEditingController();
+
   final _emailController = TextEditingController();
+
   final _passController = TextEditingController();
+
   final _addressController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -23,6 +31,8 @@ class SignupScreen extends StatelessWidget {
       ),
       body: ScopedModelDescendant<UserModel>(
         builder: (context, child, model) {
+          if(model.isLoading)
+            return Center(child: CircularProgressIndicator(),);
           return Form(
             key: _formKey,
             child: ListView(
@@ -114,4 +124,13 @@ class SignupScreen extends StatelessWidget {
       ),
     );
   }
+
+  void _onSuccess() {
+
+  }
+
+  void _onFail() {
+
+  }
 }
+

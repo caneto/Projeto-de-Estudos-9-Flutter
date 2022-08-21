@@ -116,8 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       model.signIn(
                         email: _emailController.text,
                         pass: _passController.text,
-                        onSuccess: _onSuccess(),
-                        onFail: _onFail(),
+                        onSuccess: () => _onSuccess(),
+                        onFail: () => _onFail(),
                       );
                     }),
               )
@@ -128,11 +128,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  _onSuccess() {
+  void _onSuccess() {
     Navigator.of(context).pop();
   }
 
-  _onFail() {
+  void _onFail() {
     _scaffoldKey.currentState!.showSnackBar(
         SnackBar(content: Text("Falha ao criar entrar!"),
           backgroundColor: Colors.redAccent,

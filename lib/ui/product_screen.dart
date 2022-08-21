@@ -1,6 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/datas/card_product.dart';
 import 'package:lojavirtual/datas/product_data.dart';
+import 'package:lojavirtual/models/card_model.dart';
+import 'package:lojavirtual/models/user_model.dart';
+import 'package:lojavirtual/ui/login_screen.dart';
 
 class ProductScreen extends StatefulWidget {
 
@@ -81,7 +85,7 @@ class _ProductScreenState extends State<ProductScreen> {
           Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
                   data.title!,
@@ -145,8 +149,22 @@ class _ProductScreenState extends State<ProductScreen> {
                   height: 44.0,
                   child: RaisedButton(
                     onPressed: size != "" ?
-                    () {} : null,
-                    child: Text("Adicionar ao Carrinho",
+                    () {
+                      if(UserModel.of(context).isLoggedIn()) {
+                        CardProduct cardProduct = CardProduct();
+                        cardProduct.size = size;
+                        cardProduct.quantity = 1;
+                        cardProduct.pid = data.id;
+                        cardProduct.category = data.category;
+
+                        CardModel.of(context).addCardItem(cardProduct)
+                      } else {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context)=>LoginScreen())
+                        );
+                      }
+                    } : null,
+                    child: Text(UserModel.of(context).isLoggedIn() ? "Adicionar ao Carrinho" : "Entre para Comprar!",
                         style: TextStyle(
                           fontSize: 18.0
                         ),

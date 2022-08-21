@@ -1,6 +1,4 @@
 
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lojavirtual/datas/product_data.dart';
 
@@ -14,6 +12,8 @@ class CardProduct {
   String? size;
 
   ProductData? productData;
+
+  CardProduct();
 
   CardProduct.fromDocuments(DocumentSnapshot documents) {
     cid = documents.id;

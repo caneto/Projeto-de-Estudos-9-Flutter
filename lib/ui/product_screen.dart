@@ -4,6 +4,7 @@ import 'package:lojavirtual/datas/card_product.dart';
 import 'package:lojavirtual/datas/product_data.dart';
 import 'package:lojavirtual/models/card_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
+import 'package:lojavirtual/ui/card_screen.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -157,7 +158,12 @@ class _ProductScreenState extends State<ProductScreen> {
                         cardProduct.pid = data.id;
                         cardProduct.category = data.category;
 
-                        CardModel.of(context).addCardItem(cardProduct)
+                        CardModel.of(context).addCardItem(cardProduct);
+
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context)=>CardScreen())
+                        );
+
                       } else {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context)=>LoginScreen())

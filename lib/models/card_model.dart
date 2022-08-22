@@ -11,6 +11,8 @@ class CardModel extends Model {
 
   List<CardProduct> products = [];
 
+  bool isLoading = false;
+
   CardModel(this.user);
 
   static CardModel of(BuildContext context) =>

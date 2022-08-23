@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lojavirtual/models/card_model.dart';
+import 'package:lojavirtual/models/cart_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
-import 'package:lojavirtual/tiles/card_tile.dart';
+import 'package:lojavirtual/tiles/cart_tile.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -17,7 +17,7 @@ class CardScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(right: 8.0),
             alignment: Alignment.center,
-            child: ScopedModelDescendant<CardModel>(
+            child: ScopedModelDescendant<CartModel>(
               builder: (context, child, model) {
                 int p = model.products.length;
                 return Text(
@@ -31,7 +31,7 @@ class CardScreen extends StatelessWidget {
           )
         ],
       ),
-      body: ScopedModelDescendant<CardModel>(
+      body: ScopedModelDescendant<CartModel>(
         builder: (context,child, model) {
           if(model.isLoading && UserModel.of(context).isLoggedIn()) {
             return Center(child: CircularProgressIndicator(),);
@@ -71,7 +71,7 @@ class CardScreen extends StatelessWidget {
                 Column(
                   children: model.products.map(
                     (product) {
-                      return CardTile(product);
+                      return CartTile(product);
                     }
                   ).toList(),
                 )

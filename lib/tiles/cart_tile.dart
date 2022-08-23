@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lojavirtual/datas/card_product.dart';
+import 'package:lojavirtual/datas/cart_product.dart';
 import 'package:lojavirtual/datas/product_data.dart';
+import 'package:lojavirtual/models/cart_model.dart';
 
-class CardTile extends StatelessWidget {
+class CartTile extends StatelessWidget {
 
-  final CardProduct cardProduct;
+  final CartProduct cartProduct;
 
-  CardTile(this.cardProduct, {Key? key}) : super(key: key);
+  CartTile(this.cartProduct, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CardTile extends StatelessWidget {
           Container(
             width: 120.0,
             child: Image.network(
-              cardProduct.productData?.images![0],
+              cartProduct.productData?.images![0],
               fit: BoxFit.cover,
             ),
           ),
@@ -29,15 +30,15 @@ class CardTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  cardProduct.productData?.title ?? "",
+                  cartProduct.productData?.title ?? "",
                   style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
                 ),
                 Text(
-                  "Tamanho: ${cardProduct.size}",
+                  "Tamanho: ${cartProduct.size}",
                   style: const TextStyle(fontWeight: FontWeight.w300),
                 ),
                 Text(
-                  "R\$ ${cardProduct.productData?.price?.toStringAsFixed(2)}",
+                  "R\$ ${cartProduct.productData?.price?.toStringAsFixed(2)}",
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 16.0,
@@ -48,16 +49,22 @@ class CardTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     IconButton(
-                      onPressed: cardProduct.quantity! > 1 ? () {} : null,
+                      onPressed: cartProduct.quantity > 1 ? () {
+                        CartModel.of(context).decProduct(cartProduct);
+                      } : null,
                       icon: Icon(Icons.remove, color: Theme.of(context).primaryColor,)
                     ),
-                    Text(cardProduct.quantity.toString()),
+                    Text(cartProduct.quantity.toString()),
                     IconButton(
-                        onPressed: () {} ,
+                        onPressed: () {
+                          CartModel.of(context).incProduct(cartProduct);
+                        },
                         icon: Icon(Icons.add, color: Theme.of(context).primaryColor)
                     ),
                     FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          CartModel.of(context).removeCartItem(cartProduct);
+                        },
                         child: Text("Remover"),
                         textColor: Colors.grey.shade500,
                     ),
@@ -72,14 +79,14 @@ class CardTile extends StatelessWidget {
 
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: cardProduct.productData == null ?
+      child: cartProduct.productData == null ?
         FutureBuilder<DocumentSnapshot>(
           future: FirebaseFirestore.instance
-              .collection("products").doc(cardProduct.category).collection('itens')
-              .doc(cardProduct.pid).get(),
+              .collection("products").doc(cartProduct.category).collection('itens')
+              .doc(cartProduct.pid).get(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              cardProduct.productData = ProductData.fromDocument(snapshot.data);
+              cartProduct.productData = ProductData.fromDocument(snapshot.data);
               return _buildContent();
             } else {
               return Container(

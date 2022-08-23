@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:lojavirtual/datas/card_product.dart';
+import 'package:lojavirtual/datas/cart_product.dart';
 import 'package:lojavirtual/datas/product_data.dart';
-import 'package:lojavirtual/models/card_model.dart';
+import 'package:lojavirtual/models/cart_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
-import 'package:lojavirtual/ui/card_screen.dart';
+import 'package:lojavirtual/ui/cart_screen.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -152,13 +152,14 @@ class _ProductScreenState extends State<ProductScreen> {
                     onPressed: size != "" ?
                     () {
                       if(UserModel.of(context).isLoggedIn()) {
-                        CardProduct cardProduct = CardProduct();
-                        cardProduct.size = size;
-                        cardProduct.quantity = 1;
-                        cardProduct.pid = data.id;
-                        cardProduct.category = data.category;
+                        CartProduct cartProduct = CartProduct();
+                        cartProduct.size = size;
+                        cartProduct.quantity = 1;
+                        cartProduct.pid = data.id;
+                        cartProduct.productData = data;
+                        cartProduct.category = data.category;
 
-                        CardModel.of(context).addCardItem(cardProduct);
+                        CartModel.of(context).addCartItem(cartProduct);
 
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (context)=>CardScreen())

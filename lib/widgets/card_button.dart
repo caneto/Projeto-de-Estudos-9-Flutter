@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lojavirtual/ui/card_screen.dart';
+import 'package:lojavirtual/ui/cart_screen.dart';
 
 class CardButton extends StatelessWidget {
   const CardButton({Key? key}) : super(key: key);

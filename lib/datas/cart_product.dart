@@ -2,20 +2,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lojavirtual/datas/product_data.dart';
 
-class CardProduct {
+class CartProduct {
 
   String? cid;
   String? category;
   String? pid;
 
-  int? quantity;
+  int quantity = 0;
   String? size;
 
   ProductData? productData;
 
-  CardProduct();
+  CartProduct();
 
-  CardProduct.fromDocuments(DocumentSnapshot documents) {
+  CartProduct.fromDocuments(DocumentSnapshot documents) {
     cid = documents.id;
     category = documents.get("category");
     pid = documents.get("pid");

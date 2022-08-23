@@ -13,7 +13,57 @@ class CardTile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Widget _buildContent() {
-      return Container();
+      return Row(
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            child: Image.network(
+              cardProduct.productData?.images![0],
+              fit: BoxFit.cover,
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  cardProduct.productData?.title ?? "",
+                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
+                ),
+                Text(
+                  "Tamanho: ${cardProduct.size}",
+                  style: const TextStyle(fontWeight: FontWeight.w300),
+                ),
+                Text(
+                  "R\$ ${cardProduct.productData?.price?.toStringAsFixed(2)}",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold
+                  )
+                ),
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.remove)
+                    ),
+                    Text(cardProduct.quantity.toString()),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.add)
+                    ),
+                    FlatButton(
+                        onPressed: () {},
+                        child: Text("Remover"),
+                        textColor: Colors.grey.shade500,
+                    ),
+                  ],
+                )
+              ],
+            )
+          )
+        ],
+      );
     }
 
     return Card(

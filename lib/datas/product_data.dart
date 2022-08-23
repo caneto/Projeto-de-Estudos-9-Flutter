@@ -14,12 +14,12 @@ class ProductData {
   List? sizes;
 
   ProductData.fromDocument(DocumentSnapshot? snapshot) {
-    id = snapshot.id;
-    title = snapshot.get('title');
-    discription = snapshot.get('description');
-    price = snapshot.get('price') + 0.0;
-    images = snapshot.get('images');
-    sizes  = snapshot.get('sizes');
+    id = snapshot?.id;
+    title = snapshot?.get('title');
+    discription = snapshot?.get('description');
+    price = snapshot?.get('price') + 0.0;
+    images = snapshot?.get('images');
+    sizes  = snapshot?.get('sizes');
   }
 
   Map<String, dynamic> toResumeMap() {

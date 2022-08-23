@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/card_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
+import 'package:lojavirtual/tiles/card_tile.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -63,6 +64,18 @@ class CardScreen extends StatelessWidget {
             return Center(child: Text("Nenhum produto no Carrinho",
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center),
+            );
+          } else {
+            return ListView(
+              children: <Widget>[
+                Column(
+                  children: model.products.map(
+                    (product) {
+                      return CardTile(product);
+                    }
+                  ).toList(),
+                )
+              ],
             );
           }
           return Container();

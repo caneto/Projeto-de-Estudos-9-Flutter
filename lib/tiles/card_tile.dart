@@ -14,6 +14,7 @@ class CardTile extends StatelessWidget {
 
     Widget _buildContent() {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
             width: 120.0,
@@ -24,6 +25,8 @@ class CardTile extends StatelessWidget {
           ),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   cardProduct.productData?.title ?? "",
@@ -42,15 +45,16 @@ class CardTile extends StatelessWidget {
                   )
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.remove)
+                      onPressed: cardProduct.quantity! > 1 ? () {} : null,
+                      icon: Icon(Icons.remove, color: Theme.of(context).primaryColor,)
                     ),
                     Text(cardProduct.quantity.toString()),
                     IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.add)
+                        onPressed: () {} ,
+                        icon: Icon(Icons.add, color: Theme.of(context).primaryColor)
                     ),
                     FlatButton(
                         onPressed: () {},

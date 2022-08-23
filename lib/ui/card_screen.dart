@@ -21,7 +21,7 @@ class CardScreen extends StatelessWidget {
               builder: (context, child, model) {
                 int p = model.products.length;
                 return Text(
-                  "${p ?? 0} ${p == 1 ? "ITEM" : "ITENS"}",
+                  "${p != 0 ? p: null} ${p == 1 ? "ITEM" : "ITENS"}",
                   style: TextStyle(
                     fontSize: 17.0,
                   ),

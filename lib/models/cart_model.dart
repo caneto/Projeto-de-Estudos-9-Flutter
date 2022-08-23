@@ -13,6 +13,10 @@ class CartModel extends Model {
 
   bool isLoading = false;
 
+
+  String? couponCode;
+  int discountPercentage = 0;
+
   String _users="users";
   String _cart ="cart";
 
@@ -70,6 +74,11 @@ class CartModel extends Model {
         .doc(cartProduct.cid).update(cartProduct.toMap());
 
     notifyListeners();
+  }
+
+  void setCoupon(String couponCode, int discountPercentage){
+    this.couponCode = couponCode;
+    this.discountPercentage = discountPercentage;
   }
 
   void _loadCartItems() async {

@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/correios/correios_frete.dart';
+import 'package:xml2json/xml2json.dart';
+import 'package:http/http.dart' as http;
 
 class ShipCard extends StatelessWidget {
   @override
@@ -24,8 +29,51 @@ class ShipCard extends StatelessWidget {
                   hintText: "Digite seu CEP"
               ),
               initialValue: "",
-              onFieldSubmitted: (text){
+              onFieldSubmitted: (cepDigitado) async {
+                Xml2Json xml2json = new Xml2Json(); // class parse XML to JSON
 
+                try {
+                  var url = Uri.parse(
+                      "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=21360230&sCepDestino=$cepDigitado&nVlPeso=1&nCdFormato=1&nVlComprimento=20&nVlAltura=20&nVlLargura=20&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=04510&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3"
+                  );
+
+                  http.Response reponse = await http.get(url);
+
+                  print("GET DO XML");
+                  print(reponse.body);
+
+                  if (reponse.statusCode == 200) {
+                    xml2json.parse(reponse.body);
+
+                    var resultMap = xml2json.toGData();
+
+                    Correios correios = Correios.fromJson(
+                        json.decode(resultMap)["Servicos"]["cServico"]);
+
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        duration: Duration(seconds: 3),
+                        content: Text(
+                            "R\$ ${correios.valor} reais \nPrazo da entrega: ${correios.prazo} dias"),
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                    );
+                  } else {
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Erro de conexão: ${reponse.statusCode}"),
+                        backgroundColor: Colors.redAccent,
+                      ),
+                    );
+                  }
+                } catch (erro) {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(erro.toString()),
+                      backgroundColor: Colors.redAccent,
+                    ),
+                  );
+                }
               },
             ),
           )

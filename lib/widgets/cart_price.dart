@@ -24,11 +24,49 @@ class CartPrice extends StatelessWidget {
                 ),
                 SizedBox(height: 12.0,),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text("Subtotal"),
                     Text("R\$ 0.00")
                   ],
-                )
+                ),
+                Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text("Desconto"),
+                    Text("R\$ 0.00")
+                  ],
+                ),
+                Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text("Entrega"),
+                    Text("R\$ 0.00"),
+                  ]
+                ),
+                Divider(),
+                SizedBox(height: 12.0,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text("Total",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),
+                    Text("R\$ 0.00",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.0,
+                          color: Theme.of(context).primaryColor
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 12.0,),
               ],
             );
           },

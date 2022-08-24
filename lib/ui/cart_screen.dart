@@ -3,6 +3,7 @@ import 'package:lojavirtual/models/cart_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
 import 'package:lojavirtual/tiles/cart_tile.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
+import 'package:lojavirtual/ui/order_screen.dart';
 import 'package:lojavirtual/widgets/cart_price.dart';
 import 'package:lojavirtual/widgets/discount_card.dart';
 import 'package:lojavirtual/widgets/ship_cart.dart';
@@ -83,7 +84,9 @@ class CardScreen extends StatelessWidget {
                 CartPrice(() async {
                   String? orderId = await model.finishOrder();
                   if(orderId != null)
-                    print(orderId);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context)=>OrderScreen(orderId))
+                    );
                 })
               ],
             );

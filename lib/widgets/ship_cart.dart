@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/correios/correios_frete.dart';
+import 'package:lojavirtual/models/cart_model.dart';
 import 'package:xml2json/xml2json.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,6 +50,8 @@ class ShipCard extends StatelessWidget {
 
                     Correios correios = Correios.fromJson(
                         json.decode(resultMap)["Servicos"]["cServico"]);
+
+                    CartModel.of(context).setShip(int.parse(correios.prazo), double.parse(correios.valor.replaceAll(",", ".")));
 
                     Scaffold.of(context).showSnackBar(
                       SnackBar(

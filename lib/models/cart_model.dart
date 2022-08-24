@@ -13,9 +13,11 @@ class CartModel extends Model {
 
   bool isLoading = false;
 
-
   String? couponCode;
   int discountPercentage = 0;
+
+  int prazo = 0;
+  double preco = 0;
 
   String _users="users";
   String _cart ="cart";
@@ -80,6 +82,39 @@ class CartModel extends Model {
     this.couponCode = couponCode;
     this.discountPercentage = discountPercentage;
   }
+
+  void updatePrices(){
+    notifyListeners();
+  }
+
+  void setShip(int prazo, double preco){
+    this.prazo = prazo;
+    this.preco = preco;
+  }
+
+  double getProductsPrice(){
+    double price = 0.0;
+    for(CartProduct c in products){
+      final productData = c.productData;
+      if(productData != null) {
+        price += c.quantity * productData.price;
+      }
+    }
+    return price;
+  }
+
+  double getDiscount(){
+    return getProductsPrice() * discountPercentage / 100;
+  }
+
+  double? getShipPrice(){
+    if(preco > 0)
+      return preco;
+    else
+      return 9.99;
+  }
+
+
 
   void _loadCartItems() async {
 

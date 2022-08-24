@@ -97,7 +97,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   maxLines: 3,
                 ),
                 Text(
-                  "R\$ ${data.price!.toStringAsFixed(2)}",
+                  "R\$ ${data.price.toStringAsFixed(2)}",
                   style: TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold,

@@ -47,7 +47,7 @@ class ProductTile extends StatelessWidget {
                        Padding(
                          padding: const EdgeInsets.only(left: 2.0),
                          child: Text(
-                            "R\$ ${data.price!.toStringAsFixed(2)}",
+                            "R\$ ${data.price.toStringAsFixed(2)}",
                            style: TextStyle(
                              color: Theme.of(context).primaryColor,
                              fontSize: 17.0,
@@ -89,7 +89,7 @@ class ProductTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 2.0),
                       child: Text(
-                        "R\$ ${data.price!.toStringAsFixed(2)}",
+                        "R\$ ${data.price.toStringAsFixed(2)}",
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 17.0,

@@ -8,7 +8,7 @@ class ProductData {
   String? title;
   String? discription;
 
-  double? price;
+  double price = 0.0;
 
   List? images;
   List? sizes;

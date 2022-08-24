@@ -3,6 +3,7 @@ import 'package:lojavirtual/models/cart_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
 import 'package:lojavirtual/tiles/cart_tile.dart';
 import 'package:lojavirtual/ui/login_screen.dart';
+import 'package:lojavirtual/widgets/cart_price.dart';
 import 'package:lojavirtual/widgets/discount_card.dart';
 import 'package:lojavirtual/widgets/ship_cart.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -78,7 +79,8 @@ class CardScreen extends StatelessWidget {
                   ).toList(),
                 ),
                 DiscountCard(),
-                ShipCard()
+                ShipCard(),
+                CartPrice()
               ],
             );
           }

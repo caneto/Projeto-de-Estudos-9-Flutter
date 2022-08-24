@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/correios/correios_frete.dart';
+import 'package:lojavirtual/correios/via_cep_service.dart';
 import 'package:lojavirtual/models/cart_model.dart';
 import 'package:xml2json/xml2json.dart';
 import 'package:http/http.dart' as http;
@@ -31,6 +32,13 @@ class ShipCard extends StatelessWidget {
               ),
               initialValue: "",
               onFieldSubmitted: (cepDigitado) async {
+
+                String _result;
+
+                final resultCep = await ViaCepService.fetchCep(cep: cepDigitado);
+                print(resultCep.localidade); // Exibindo somente a localidade no terminal
+                _result = resultCep.toJson();
+
                 Xml2Json xml2json = new Xml2Json(); // class parse XML to JSON
 
                 try {

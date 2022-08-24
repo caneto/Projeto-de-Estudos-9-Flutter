@@ -80,7 +80,7 @@ class CardScreen extends StatelessWidget {
                 ),
                 DiscountCard(),
                 ShipCard(),
-                CartPrice()
+                CartPrice((){})
               ],
             );
           }

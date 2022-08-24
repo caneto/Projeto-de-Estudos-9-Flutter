@@ -3,7 +3,10 @@ import 'package:lojavirtual/models/cart_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartPrice extends StatelessWidget {
-  const CartPrice({Key? key}) : super(key: key);
+
+  final VoidCallback buy;
+
+  CartPrice(this.buy, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +70,12 @@ class CartPrice extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 12.0,),
+                RaisedButton(
+                  child: Text("Finalizar pedido"),
+                  textColor: Colors.white,
+                  color: Theme.of(context).primaryColor,
+                  onPressed: () {}
+                )
               ],
             );
           },

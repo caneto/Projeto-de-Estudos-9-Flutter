@@ -52,21 +52,22 @@ class HomeTab extends StatelessWidget {
                       ),
                     ),
                   );
-                } else
+                } else {
                   return SliverMasonryGrid.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 1.0,
-                      crossAxisSpacing: 1.0,
-                      itemBuilder: (context, index) {
-                        return FadeInImage.memoryNetwork(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 1.0,
+                    crossAxisSpacing: 1.0,
+                    itemBuilder: (context, index) {
+                      return FadeInImage.memoryNetwork(
                           placeholder: kTransparentImage,
                           image: snapshot.data!.docs[index]['image'],
                           fit: BoxFit.cover
-                          );
-                        },
-                        childCount: snapshot.data!.docs.length,
-                     );
+                      );
+                    },
+                    childCount: snapshot.data!.docs.length,
+                  );
                 }
+              }
             )],
           ),
        ],

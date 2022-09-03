@@ -32,7 +32,7 @@ class DiscountCard extends StatelessWidget {
                 FirebaseFirestore.instance.collection("coupons").doc(text).get().then((docSnap) {
                   if(docSnap.data() != null) {
                     CartModel.of(context).setCoupon(text,docSnap.data()!['percent']);
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Desconto de ${docSnap.data()!['percent']}% aplicado"),
                           backgroundColor: Theme.of(context).primaryColor,
                           duration: Duration(seconds: 2),
@@ -40,7 +40,7 @@ class DiscountCard extends StatelessWidget {
                     );
                   } else {
                     CartModel.of(context).setCoupon("",0);
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Cupom não existente"),
                           backgroundColor: Colors.redAccent,
                           duration: Duration(seconds: 2),

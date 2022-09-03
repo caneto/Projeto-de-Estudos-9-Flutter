@@ -148,7 +148,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(height: 16.0,),
                 SizedBox(
                   height: 44.0,
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: size != "" ?
                     () {
                       if(UserModel.of(context).isLoggedIn()) {
@@ -176,8 +176,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           fontSize: 18.0
                         ),
                     ),
-                    color: primeryColor,
-                    textColor: Colors.white,
+                    style: raisedButtonStyle,
                   ),
                 ),
                 SizedBox(height: 16.0,),
@@ -201,4 +200,15 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
     );
   }
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.blue.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
 }

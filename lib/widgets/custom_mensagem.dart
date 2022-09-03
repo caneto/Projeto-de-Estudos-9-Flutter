@@ -26,9 +26,9 @@ class CustomMensagem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 16.0,),
-          RaisedButton(
+          ElevatedButton(
               child: Text("Entrar", style: TextStyle(fontSize: 18.0,)),
-              textColor: Theme.of(context).primaryColor,
+              style: raisedButtonStyle,
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => LoginScreen()));
@@ -38,5 +38,16 @@ class CustomMensagem extends StatelessWidget {
       ),
     );
   }
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.blue.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
 
 }

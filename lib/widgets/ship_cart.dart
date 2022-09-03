@@ -61,7 +61,7 @@ class ShipCard extends StatelessWidget {
 
                     CartModel.of(context).setShip(int.parse(correios.prazo), double.parse(correios.valor.replaceAll(",", ".")));
 
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         duration: Duration(seconds: 3),
                         content: Text(
@@ -70,7 +70,7 @@ class ShipCard extends StatelessWidget {
                       ),
                     );
                   } else {
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text("Erro de conexão: ${reponse.statusCode}"),
                         backgroundColor: Colors.redAccent,
@@ -78,7 +78,7 @@ class ShipCard extends StatelessWidget {
                     );
                   }
                 } catch (erro) {
-                  Scaffold.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(erro.toString()),
                       backgroundColor: Colors.redAccent,

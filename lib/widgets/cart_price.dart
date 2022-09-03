@@ -75,10 +75,9 @@ class CartPrice extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 12.0,),
-                RaisedButton(
+                ElevatedButton(
+                  style: raisedButtonStyle,
                   child: Text("Finalizar pedido"),
-                  textColor: Colors.white,
-                  color: Theme.of(context).primaryColor,
                   onPressed: () {}
                 )
               ],
@@ -88,4 +87,15 @@ class CartPrice extends StatelessWidget {
       ),
     );
   }
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.pink.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
 }

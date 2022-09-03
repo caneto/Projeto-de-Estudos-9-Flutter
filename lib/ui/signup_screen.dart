@@ -87,16 +87,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(height: 16.0,),
                 SizedBox(
                   height: 44.0,
-                  child: RaisedButton(
-                      child: Text("Criar Conta",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
+                  child: ElevatedButton(
+                      style: raisedButtonStyle,
+                      child: Text("Criar Conta", style: TextStyle(fontSize: 18.0,),
                       ),
-                      textColor: Colors.white,
-                      color: Theme
-                          .of(context)
-                          .primaryColor,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
 
@@ -124,8 +118,19 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.blue.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
+
   void _onSuccess() {
-    _scaffoldKey.currentState!.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Usuário criado com sucesso!"),
           backgroundColor: Theme.of(context).primaryColor,
           duration: Duration(seconds: 2),
@@ -137,12 +142,14 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onFail() {
-    _scaffoldKey.currentState!.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Falha ao criar usuário!"),
           backgroundColor: Colors.redAccent,
           duration: Duration(seconds: 2),
         )
     );
   }
+
+
 }
 

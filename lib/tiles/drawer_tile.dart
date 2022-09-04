@@ -38,7 +38,6 @@ class DrawerTile extends StatelessWidget {
                 ),
               )
             ],
-
           ),
         ),
       ),

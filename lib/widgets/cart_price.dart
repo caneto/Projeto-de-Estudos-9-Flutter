@@ -78,7 +78,7 @@ class CartPrice extends StatelessWidget {
                 ElevatedButton(
                   style: raisedButtonStyle,
                   child: Text("Finalizar pedido"),
-                  onPressed: () {}
+                  onPressed: buy
                 )
               ],
             );

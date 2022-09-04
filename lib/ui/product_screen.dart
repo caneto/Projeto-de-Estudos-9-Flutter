@@ -162,7 +162,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         CartModel.of(context).addCartItem(cartProduct);
 
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context)=>CardScreen())
+                            MaterialPageRoute(builder: (context)=>CartScreen())
                         );
 
                       } else {

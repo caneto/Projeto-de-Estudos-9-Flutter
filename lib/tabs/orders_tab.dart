@@ -1,13 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lojavirtual/models/user_model.dart';
 import 'package:lojavirtual/tiles/order_title.dart';
 import 'package:lojavirtual/ui/home_screen.dart';
-
-import '../widgets/custom_mensagem.dart';
+import 'package:lojavirtual/widgets/custom_mensagem.dart';
 
 class OrdersTab extends StatelessWidget {
-  const OrdersTab({Key? key}) : super(key: key);
+  OrdersTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +34,15 @@ class OrdersTab extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 16.0,),
-                  RaisedButton(
-                      child: Text(
-                          "Voltar", style: TextStyle(fontSize: 18.0,)),
-                      textColor: Theme
-                          .of(context)
-                          .primaryColor,
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
-                      }
+                  ElevatedButton(
+                    style: raisedButtonStyle,
+                    child: Text(
+                        "Voltar", style: TextStyle(fontSize: 18.0,)),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
+                    }
                   )
                 ],
               ),
@@ -63,4 +60,16 @@ class OrdersTab extends StatelessWidget {
       return CustomMensagem("Faça o login para acompanhar!",1);
     }
   }
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.blue.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
+
 }

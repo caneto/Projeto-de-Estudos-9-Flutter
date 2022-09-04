@@ -63,12 +63,12 @@ class CartTile extends StatelessWidget {
                         },
                         icon: Icon(Icons.add, color: Theme.of(context).primaryColor)
                     ),
-                    FlatButton(
+                    TextButton(
                         onPressed: () {
                           CartModel.of(context).removeCartItem(cartProduct);
                         },
+                        style: flatButtonStyle,
                         child: Text("Remover"),
-                        textColor: Colors.grey.shade500,
                     ),
                   ],
                 )
@@ -102,4 +102,14 @@ class CartTile extends StatelessWidget {
         _buildContent()
     );
   }
+
+  final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+    foregroundColor: Colors.grey.shade500,
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.zero,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2.0)),
+    ),
+  );
+
 }

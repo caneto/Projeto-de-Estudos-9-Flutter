@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text("Entrar"),
         centerTitle: true,
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => SignupScreen()));
@@ -34,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
               "Criar Conta",
               style: TextStyle(fontSize: 16.0),
             ),
-            textColor: Colors.white,
           )
         ],
       ),
@@ -72,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     if(_emailController.text.isEmpty)
                       SnackBar(content: Text("Insira seu email para recuperação!"),
@@ -94,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.right,
                     style: TextStyle(fontSize: 16.0),
                   ),
-                  padding: EdgeInsets.zero,
                 ),
               ),
               SizedBox(
@@ -102,15 +100,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(
                 height: 44.0,
-                child: RaisedButton(
+                child: ElevatedButton(
+                    style: raisedButtonStyle,
                     child: Text(
                       "Entrar",
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
                     ),
-                    textColor: Colors.white,
-                    color: Theme.of(context).primaryColor,
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {}
                       model.signIn(
@@ -128,12 +125,32 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.blue.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
+
+  final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+    foregroundColor: Colors.white,
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16.0),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2.0)),
+    ),
+  );
+
   void _onSuccess() {
     Navigator.of(context).pop();
   }
 
   void _onFail() {
-    _scaffoldKey.currentState!.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Falha ao criar entrar!"),
           backgroundColor: Colors.redAccent,
           duration: Duration(seconds: 2),

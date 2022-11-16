@@ -47,7 +47,7 @@ class HomeTab extends StatelessWidget {
                     child: Container(
                       height: 200.0,
                       alignment: Alignment.center,
-                      child: CircularProgressIndicator(
+                      child: const CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                     ),

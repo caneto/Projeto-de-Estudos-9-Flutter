@@ -163,13 +163,13 @@ class CartModel extends Model {
 
   void _loadCartItems() async {
 
-    QuerySnapshot query = await FirebaseFirestore.instance.collection(_users).doc(user?.firebaseUser?.uid)
-        .collection(_cart)
-        .get();
+      QuerySnapshot query = await FirebaseFirestore.instance.collection(_users).doc(user?.firebaseUser?.uid)
+          .collection(_cart)
+          .get();
 
-    products = query.docs.map((doc) => CartProduct.fromDocuments(doc)).toList();
+      products = query.docs.map((doc) => CartProduct.fromDocuments(doc)).toList();
 
-    notifyListeners();
+      notifyListeners();
   }
 
 }

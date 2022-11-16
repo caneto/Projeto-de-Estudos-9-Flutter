@@ -27,16 +27,16 @@ class OrdersTab extends StatelessWidget {
                   Icon(Icons.add_shopping_cart, size: 80.0, color: Theme
                       .of(context)
                       .primaryColor),
-                  SizedBox(height: 16.0,),
-                  Text("Carrinho vazio favor voltar!",
+                  const SizedBox(height: 16.0,),
+                  const Text("Carrinho vazio favor voltar!",
                     style: TextStyle(
                         fontSize: 20.0, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 16.0,),
+                  const SizedBox(height: 16.0,),
                   ElevatedButton(
                     style: raisedButtonStyle,
-                    child: Text(
+                    child: const Text(
                         "Voltar", style: TextStyle(fontSize: 18.0,)),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(

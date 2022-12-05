@@ -88,21 +88,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "Esqueci minha senha",
                     textAlign: TextAlign.right,
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16.0,
               ),
               SizedBox(
                 height: 44.0,
                 child: ElevatedButton(
                     style: raisedButtonStyle,
-                    child: Text(
+                    child: const Text(
                       "Entrar",
                       style: TextStyle(
                         fontSize: 18.0,

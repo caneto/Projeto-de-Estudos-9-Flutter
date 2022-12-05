@@ -15,10 +15,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       controller: _pageController,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: <Widget>[
         Scaffold(
-          body: HomeTab(),
+          body: const HomeTab(),
           drawer: CustomDrawer(_pageController),
           floatingActionButton: CardButton(),
         ),
